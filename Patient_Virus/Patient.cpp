@@ -47,8 +47,14 @@ void Patient::DoStart()
 
 void Patient::TakeMedicine(int medicine_resistance)
 {
-	for (std::list<Virus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
+	for (auto const& it : m_virusList)
 	{
+		std::list<Virus*> tempLst;
+		tempLst = it->ReduceResistance(medicine_resistance);
+		for (auto const& it2 : tempLst)
+		{
+			m_virusList.push_back(it2);
+		}
 	}
 }
 

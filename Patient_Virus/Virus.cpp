@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <fstream>
+#include "Patient.h"
 
 Virus::Virus()
 {
@@ -27,12 +28,18 @@ void Virus::LoadADNInformation()
 	m_dna[line.size()] = '\0';
 }
 
-void Virus::ReduceResistance(int medicine_resistance)
+std::list<Virus*> Virus::ReduceResistance(int medicine_resistance)
 {
 	m_resistance = m_resistance - medicine_resistance;
 	if (m_resistance <= 0)
 	{
 		this->~Virus();
+		std::list<Virus*> tempLst;
+		return tempLst;
+	}
+	else
+	{
+		return this->DoClone();
 	}
 }
 

@@ -8,7 +8,7 @@ public:
 	Virus();
 	~Virus();
 	void LoadADNInformation();
-	void ReduceResistance(int medicine_resistance);
+	std::list<Virus*> ReduceResistance(int medicine_resistance);
 
 	virtual void DoBorn();
 	virtual std::list<Virus*> DoClone();
