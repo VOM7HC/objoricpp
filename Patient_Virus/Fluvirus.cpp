@@ -42,9 +42,9 @@ std::list<Virus*> Fluvirus::DoClone()
 
 void Fluvirus::DoDie()
 {
-	this->m_dna = NULL;
-	this->m_color = NULL;
-	this->m_resistance = NULL;
+	//this->m_dna = NULL;
+	//this->m_color = NULL;
+	//this->m_resistance = NULL;
 
 	delete this;
 }

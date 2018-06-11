@@ -32,7 +32,7 @@ void Patient::DoStart()
 		}
 		else
 		{
-			Fluvirus *flu = new Fluvirus;
+			Virus *flu = new Fluvirus;
 			m_virusList.push_back(flu);
 		}
 	}
