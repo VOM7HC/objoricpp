@@ -47,17 +47,13 @@ std::list<Virus*> DengueVirus::DoClone()
 	*other1->m_protein = *this->m_protein;
 	other1->m_dna = this->m_dna;
 	other1->m_resistance = this->m_resistance;
+
 	*other2->m_protein = *this->m_protein;
 	other2->m_dna = this->m_dna;
 	other2->m_resistance = this->m_resistance;
 
 	tempLst.push_back(other1);
 	tempLst.push_back(other2);
-
-	other1 = NULL;
-	delete other1;
-	other2 = NULL;	
-	delete other2;
 
 	return tempLst;
 	tempLst.clear();
@@ -74,15 +70,15 @@ void DengueVirus::DoDie()
 
 void DengueVirus::InitResistance()
 {
-	if (m_protein == "NS3")
+	if (strcmp(m_protein, "NS3") == 0)
 	{
 		m_resistance = 1 + (rand() % (int)(10 - 1 + 1));
 	}
-	if (m_protein == "NS5")
+	if (strcmp(m_protein, "NS5") == 0)
 	{
 		m_resistance = 11 + (rand() % (int)(20 - 11 + 1));
 	}
-	if (m_protein == "E")
+	if (strcmp(m_protein, "E") == 0)
 	{
 		m_resistance = 21 + (rand() % (int)(30 - 21 + 1));
 	}

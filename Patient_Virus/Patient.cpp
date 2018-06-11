@@ -5,7 +5,6 @@
 
 Patient::Patient()
 {
-	m_state = 1;
 	InitResistance();
 	DoStart();
 }
@@ -28,19 +27,13 @@ void Patient::DoStart()
 	{
 		if (i % 2 == 0)
 		{
-			DengueVirus *deng = new DengueVirus;
+			Virus *deng = new DengueVirus;
 			m_virusList.push_back(deng);
-
-			deng = NULL;
-			delete deng;
 		}
 		else
 		{
 			Fluvirus *flu = new Fluvirus;
 			m_virusList.push_back(flu);
-
-			flu = NULL;
-			delete flu;
 		}
 	}
 }
@@ -55,6 +48,15 @@ void Patient::TakeMedicine(int medicine_resistance)
 		{
 			m_virusList.push_back(it2);
 		}
+	}
+	int tempVirusPower = 0;
+	for (auto const& it : m_virusList)
+	{
+		tempVirusPower += it->GetResist();
+	}
+	if (m_resistance - tempVirusPower <= 0)
+	{
+		this->DoDie();
 	}
 }
 

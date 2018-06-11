@@ -55,12 +55,13 @@ std::list<Virus*> Virus::DoClone()
 
 void Virus::DoDie()
 {
-	this->m_dna = NULL;
-	this->m_resistance = NULL;
-
-	delete this;
 }
 
 void Virus::InitResistance()
 {
+}
+
+int Virus::GetResist()
+{
+	return m_resistance;
 }
