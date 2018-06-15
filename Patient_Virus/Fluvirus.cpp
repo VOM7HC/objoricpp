@@ -4,8 +4,8 @@
 
 Fluvirus::Fluvirus()
 {
-	InitResistance();
 	DoBorn();
+	InitResistance();	
 }
 
 Fluvirus::~Fluvirus()
@@ -32,9 +32,6 @@ std::list<Virus*> Fluvirus::DoClone()
 	other->m_resistance = this->m_resistance;
 
 	tempLst.push_back(other);
-	
-	other = NULL;
-	delete other;
 
 	return tempLst;
 	tempLst.clear();
@@ -42,11 +39,8 @@ std::list<Virus*> Fluvirus::DoClone()
 
 void Fluvirus::DoDie()
 {
-	//this->m_dna = NULL;
-	//this->m_color = NULL;
-	//this->m_resistance = NULL;
-
-	delete this;
+	this->m_color = 0;
+	this->m_resistance = 0;
 }
 
 void Fluvirus::InitResistance()

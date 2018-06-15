@@ -61,11 +61,7 @@ std::list<Virus*> DengueVirus::DoClone()
 
 void DengueVirus::DoDie()
 {
-	this->m_dna = NULL;
-	*this->m_protein = NULL;
-	this->m_resistance = NULL;
-
-	delete this;
+	this->m_resistance = 0;
 }
 
 void DengueVirus::InitResistance()

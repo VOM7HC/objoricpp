@@ -6,14 +6,15 @@ class Virus
 {
 public:
 	Virus();
+	Virus(const Virus& other) : m_dna(other.m_dna), m_resistance(other.m_resistance) {};
 	virtual ~Virus();
 	void LoadADNInformation();
-	std::list<Virus*> ReduceResistance(int medicine_resistance);
+	int ReduceResistance(int medicine_resistance);
 
-	virtual void DoBorn();
-	virtual std::list<Virus*> DoClone();
-	virtual void DoDie();
-	virtual void InitResistance();
+	virtual void DoBorn() = 0;
+	virtual std::list<Virus*> DoClone() = 0;
+	virtual void DoDie() = 0;
+	virtual void InitResistance() = 0;
 
 	int Virus::GetResist();
 protected:

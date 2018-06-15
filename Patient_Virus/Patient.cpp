@@ -2,6 +2,7 @@
 #include "Patient.h"
 #include "Fluvirus.h"
 #include "DengueVirus.h"
+#include <algorithm>
 
 Patient::Patient()
 {
@@ -40,23 +41,33 @@ void Patient::DoStart()
 
 void Patient::TakeMedicine(int medicine_resistance)
 {
-	for (auto const& it : m_virusList)
+	std::list<Virus*> toAdded;
+	for (std::list<Virus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
 	{
-		std::list<Virus*> tempLst;
-		tempLst = it->ReduceResistance(medicine_resistance);
-		for (auto const& it2 : tempLst)
+		int res = (*it)->ReduceResistance(medicine_resistance);
+		if (res == 1)
 		{
-			m_virusList.push_back(it2);
+			Virus* virus = *it;
+			*it = nullptr;
+
+			delete virus;
+			virus = nullptr;
+		}
+		else
+		{
+			std::list<Virus*> tempLst = (*it)->DoClone();
+			for (auto it2 : tempLst)
+			{
+				toAdded.push_back(it2);
+			}
 		}
 	}
-	int tempVirusPower = 0;
-	for (auto const& it : m_virusList)
+
+	m_virusList.remove(nullptr);
+
+	for (auto it : toAdded)
 	{
-		tempVirusPower += it->GetResist();
-	}
-	if (m_resistance - tempVirusPower <= 0)
-	{
-		this->DoDie();
+		m_virusList.push_back(it);
 	}
 }
 

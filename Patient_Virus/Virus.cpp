@@ -8,12 +8,16 @@
 
 Virus::Virus()
 {
+	m_dna = nullptr;
 }
-
 
 Virus::~Virus()
 {
-	//DoDie;
+	if (m_dna)
+	{
+		delete m_dna;
+		m_dna = nullptr;
+	}
 }
 
 void Virus::LoadADNInformation()
@@ -28,37 +32,19 @@ void Virus::LoadADNInformation()
 	m_dna[line.size()] = '\0';
 }
 
-std::list<Virus*> Virus::ReduceResistance(int medicine_resistance)
+int Virus::ReduceResistance(int medicine_resistance)
 {
 	m_resistance = m_resistance - medicine_resistance;
 	if (m_resistance <= 0)
-	{
-		this->~Virus();
-		std::list<Virus*> tempLst;
-		return tempLst;
-	}
+		return 1;
 	else
-	{
-		return this->DoClone();
-	}
-}
-
-void Virus::DoBorn()
-{
+		return 0;
 }
 
 std::list<Virus*> Virus::DoClone()
 {
 	std::list<Virus*> tempLst;
 	return tempLst;
-}
-
-void Virus::DoDie()
-{
-}
-
-void Virus::InitResistance()
-{
 }
 
 int Virus::GetResist()
